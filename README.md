@@ -9,7 +9,7 @@
 | Datei | Zweck |
 |---|---|
 | `neobone.kbd` | Die Kanata-Config |
-| `install-kanata.ps1` / `.bat` | Lädt Kanata, kopiert die Config nach `C:\kanata\windows-binaries-x64\` und startet Kanata |
+| `install-kanata.ps1` / `.bat` | Lädt Kanata, kopiert die Config nach `C:\kanata\kanata-pre\` und startet Kanata |
 | `run-kanata.ps1` / `.bat` | Startet nur Kanata aus `C:\kanata\kanata-pre\` mit der dortigen `neobone.kbd` |
 | `SKILL.md` | Hinweise und Lernpunkte für das Erweitern der Config (für Menschen und KI-Agenten) |
 
@@ -64,7 +64,7 @@ Bei jeder Änderung an `neobone.kbd` Skript erneut ausführen, damit die Config 
 `Win+R` → `shell:startup` und dort eine Verknüpfung anlegen auf:
 
 ```
-C:\kanata\windows-binaries-x64\kanata_windows_gui_winIOv2_x64.exe --cfg C:\kanata\windows-binaries-x64\neobone.kbd
+C:\kanata\kanata-pre\kanata_windows_gui_winIOv2_x64.exe --cfg C:\kanata\kanata-pre\neobone.kbd
 ```
 
 ## Validieren (ohne Windows)

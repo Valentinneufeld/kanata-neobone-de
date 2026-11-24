@@ -1,7 +1,7 @@
 # Installiert/aktualisiert Kanata, kopiert neobone.kbd aus diesem Ordner und startet Kanata.
 $ErrorActionPreference = 'Stop'
 $ver = 'v1.13.0-prerelease-1'
-$dir = 'C:\kanata\windows-binaries-x64'
+$dir = 'C:\kanata\kanata-pre'
 $exe = Join-Path $dir 'kanata_windows_tty_winIOv2_x64.exe'
 $marker = Join-Path $dir 'version.txt'
 
