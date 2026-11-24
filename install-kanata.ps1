@@ -19,7 +19,11 @@ if (-not (Test-Path $exe) -or -not (Test-Path $marker) -or (Get-Content $marker)
     Set-Content $marker $ver
 }
 
-Copy-Item (Join-Path $PSScriptRoot 'neobone.kbd') (Join-Path $dir 'neobone.kbd') -Force
+$srcCfg = Join-Path $PSScriptRoot 'neobone.kbd'
+$dstCfg = Join-Path $dir 'neobone.kbd'
+if ((Resolve-Path $srcCfg).Path -ne (Resolve-Path $dstCfg -ErrorAction SilentlyContinue).Path) {
+    Copy-Item $srcCfg $dstCfg -Force
+}
 
 # Startmenü-Eintrag "Kanata" (Win-Taste, "Kanata" tippen). GUI-EXE hat das Kanata-Icon und kein Konsolenfenster.
 $guiExe = Join-Path $dir 'kanata_windows_gui_winIOv2_x64.exe'
