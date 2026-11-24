@@ -51,7 +51,8 @@ Physisch ist die untere Reihe eine Taste nach links verschoben: `f` auf `<` (102
 - **AltGr hängt / Layer bleibt hängen:** `windows-altgr cancel-lctl-press` in `defcfg` (Windows erzeugt bei AltGr ein Fake-Strg).
 - **"Unexpected keycode is pressed in kanata but not in Windows" + Zeichen kommen nicht mehrfach hintereinander** (betrifft y, z, ü, ö, ä, ß): Kanata prüft per `GetAsyncKeyState` mit US-Tastencodes, die auf deutschem Layout anders heißen, und löscht dann den Tastenzustand. In **v1.12.0 nicht per Config lösbar** (`windows-sync-keystates no` schaltet nur einen zweiten Check ab, nicht diesen). Lösung: **v1.13.0-prerelease-1** oder neuer verwenden (https://github.com/jtroo/kanata/releases/tag/v1.13.0-prerelease-1) und `windows-sync-keystates none` in `defcfg` setzen. In v1.12.0 ist der Wert ein Bool und `none` ein Parse-Fehler; in v1.13 ist `no` ungültig. Immer mit der Binary-Version validieren, die auf dem Rechner läuft. Siehe Issue jtroo/kanata#2115.
 - Layer-Tasten (`caps \ 102d ralt`) in jeder `deflayer` explizit als `@l3`/`@l4` eintragen, nicht als `_`.
-- Notausgang beim Testen: `Ctrl+Space+Esc` beendet Kanata.
+- Notausgang beim Testen: linke `Strg` + `Leertaste` + `Esc` beendet Kanata (physische Tasten, nicht die Home Row Mods). Alternativ Tray-Icon → Exit oder `Stop-Process -Name 'kanata*' -Force`.
+- Wenn `install-kanata.ps1` schon im Zielordner `C:\kanata\kanata-pre` liegt, wird die Config nicht kopiert (Quelle = Ziel).
 - Ebenen 3/4 sind aus dem Gedächtnis nach Neo gebaut. Die Webseite https://neo-layout.org/Layouts/bone/ zeigt sie nur als Bilder, ggf. gegen die Bilder prüfen.
 - Nicht umgesetzt: Ebenen 5/6, tote Tasten (`^`, `´`, `` ` ``), ß -> ẞ mit Shift ungeprüft.
 

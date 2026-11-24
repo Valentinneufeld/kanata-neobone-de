@@ -51,7 +51,7 @@ Auf Ebene 3 und 4 funktionieren die Mods ebenfalls, z. B. Ö halten + F halten +
 
 1. Kanata `v1.13.0-prerelease-1` oder neuer von den [Releases](https://github.com/jtroo/kanata/releases) laden (`windows-binaries-x64.zip`) und entpacken. Die Option `windows-sync-keystates none` gibt es erst ab dieser Version.
 2. Ordner dieses Repos nach Windows holen und `install-kanata.bat` per Doppelklick ausführen. Das Skript lädt Kanata, kopiert die Config und startet Kanata.
-3. Beenden: `Strg` + `Leertaste` + `Esc`.
+3. Beenden: `Strg` (links) + `Leertaste` + `Esc`, Rechtsklick auf das Tray-Icon → „Exit" oder `Stop-Process -Name 'kanata*' -Force`.
 
 Von PowerShell aus (Pfad zum Repo anpassen):
 
