@@ -1,0 +1,63 @@
+;; Neo-Bone (Ebenen 1-4) auf deutschem Windows-Layout (QWERTZ im OS)
+;; Kanata arbeitet per Scancode. Namen = US-Position:
+;;   y = Taste "Z", z = Taste "Y", [ = ü, ; = ö, ' = ä, - = ß, / = "-"
+;; Ausgabe ebenfalls per Position; das deutsche OS-Layout macht das Zeichen daraus.
+;; Ebene 3: CapsLock / #   Ebene 4: < / AltGr
+
+(defcfg
+  process-unmapped-keys yes
+  windows-altgr cancel-lctl-press
+  windows-sync-keystates none
+)
+
+(defsrc
+  q w e r t y u i o p [
+  a s d f g h j k l ; '
+  z x c v b n m , . /
+  caps \ 102d ralt spc lsft
+)
+
+(deflayer bone
+  j d u a x   p h l m w -
+  @a  t @d @f o   b @j @k s @oe @ae
+  v [ ' ; @l4   z y , . k
+  @l3 @l3 f @l4 spc @l4
+)
+
+(deflayer sym
+  (unicode …) (unicode _) (unicode "[") (unicode "]") (unicode ^)   (unicode !) (unicode <) (unicode >) (unicode =) (unicode &) (unicode ſ)
+  @s-a (unicode /) @s-d @s-f (unicode *)   (unicode ?) @s-j @s-k (unicode -) (unicode :) (unicode @)
+  (unicode $) (unicode |) (unicode ~) (unicode `) @l4   (unicode +) (unicode %) S-2 S-\ (unicode ;)
+  @l3 @l3 (unicode #) @l4 spc @l4
+)
+
+(deflayer nav
+  pgup bspc up   del  pgdn    (unicode ¡) (unicode 7) (unicode 8) (unicode 9) (unicode +) (unicode -)
+  @n-a left @n-d @n-f end     (unicode ¿) @n-j @n-k (unicode 6) (unicode ",") (unicode .)
+  tab  ins  ret  C-z @l4     (unicode :) (unicode 1) (unicode 2) (unicode 3) (unicode ;)
+  @l3 @l3 esc @l4 0 @l4
+)
+
+(defalias
+  l3 (layer-while-held sym)
+  l4 (layer-while-held nav)
+  ;; Home Row Mods (physische Position a d f j k ö ä, Ausgabe = Bone-Buchstabe)
+  a  (tap-hold-release 200 200 c lalt)
+  d  (tap-hold-release 200 200 i lsft)
+  f  (tap-hold-release 200 200 e lctl)
+  j  (tap-hold-release 200 200 n rctl)
+  k  (tap-hold-release 200 200 r rsft)
+  oe (tap-hold-release 200 200 g @l4)
+  ae (tap-hold-release 200 200 q @l3)
+  ;; Home Row Mods auch auf Ebene 3 (s-) und 4 (n-): Tap = Zeichen der Ebene
+  s-a (tap-hold-release 200 200 (unicode "\") lalt)
+  s-d (tap-hold-release 200 200 (unicode "{") lsft)
+  s-f (tap-hold-release 200 200 (unicode "}") lctl)
+  s-j (tap-hold-release 200 200 (unicode "(") rctl)
+  s-k (tap-hold-release 200 200 (unicode ")") rsft)
+  n-a (tap-hold-release 200 200 home lalt)
+  n-d (tap-hold-release 200 200 down lsft)
+  n-f (tap-hold-release 200 200 rght lctl)
+  n-j (tap-hold-release 200 200 (unicode 4) rctl)
+  n-k (tap-hold-release 200 200 (unicode 5) rsft)
+)
