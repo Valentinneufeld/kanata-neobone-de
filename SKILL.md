@@ -52,7 +52,6 @@ Physisch ist die untere Reihe eine Taste nach links verschoben: `f` auf `<` (102
 - **"Unexpected keycode is pressed in kanata but not in Windows" + Zeichen kommen nicht mehrfach hintereinander** (betrifft y, z, ü, ö, ä, ß): Kanata prüft per `GetAsyncKeyState` mit US-Tastencodes, die auf deutschem Layout anders heißen, und löscht dann den Tastenzustand. In **v1.12.0 nicht per Config lösbar** (`windows-sync-keystates no` schaltet nur einen zweiten Check ab, nicht diesen). Lösung: **v1.13.0-prerelease-1** oder neuer verwenden (https://github.com/jtroo/kanata/releases/tag/v1.13.0-prerelease-1) und `windows-sync-keystates none` in `defcfg` setzen. In v1.12.0 ist der Wert ein Bool und `none` ein Parse-Fehler; in v1.13 ist `no` ungültig. Immer mit der Binary-Version validieren, die auf dem Rechner läuft. Siehe Issue jtroo/kanata#2115.
 - Layer-Tasten (`caps \ 102d ralt`) in jeder `deflayer` explizit als `@l3`/`@l4` eintragen, nicht als `_`.
 - Notausgang beim Testen: linke `Strg` + `Leertaste` + `Esc` beendet Kanata (physische Tasten, nicht die Home Row Mods). Alternativ Tray-Icon → Exit oder `Stop-Process -Name 'kanata*' -Force`.
-- Wenn `install-kanata.ps1` schon im Zielordner `C:\kanata\kanata-pre` liegt, wird die Config nicht kopiert (Quelle = Ziel).
 - Ebenen 3/4 sind aus dem Gedächtnis nach Neo gebaut. Die Webseite https://neo-layout.org/Layouts/bone/ zeigt sie nur als Bilder, ggf. gegen die Bilder prüfen.
 - Nicht umgesetzt: Ebenen 5/6, tote Tasten (`^`, `´`, `` ` ``), ß -> ẞ mit Shift ungeprüft.
 
@@ -68,19 +67,18 @@ Erwartet: `config file is valid`. `gh release download` geht ohne Login nicht, d
 
 ## Installation / Update unter Windows
 
-- Zielordner (Skripte und Config): `C:\kanata\kanata-pre\`. Das ZIP entpackt flach dorthin.
+- Alles in `kanata.ps1` (`-Action install|run`, `-Version`). `.bat`-Dateien sind nur Doppelklick-Starter (`.ps1` öffnet per Doppelklick den Editor).
+- Pfade relativ zum Skript (`$PSScriptRoot`): Binaries in `bin\` (gitignored), Config `neobone.kbd` direkt aus dem Repo, kein Kopieren.
+- `install`: stoppt Kanata aus `bin\`, lädt bei Bedarf `$Version` (Marker `bin\version.txt`), legt `Kanata.lnk` im Startmenü an (GUI-EXE mit Icon, `--cfg`), startet Kanata.
+- `run`: startet die tty-EXE mit Konsole (Debuggen).
+- Versionswechsel: Standardwert von `-Version` in `kanata.ps1` ändern. Zugleich die Version in der Validieren-URL oben.
+- Nach Verschieben des Ordners `install-kanata.bat` erneut ausführen (Startmenü-Pfad).
 - Dateien: `kanata_windows_tty_winIOv2_x64.exe` (Konsole), `kanata_windows_gui_winIOv2_x64.exe` (Tray).
-- `install-kanata.ps1` / `.bat`: beendet laufendes Kanata, lädt bei Bedarf die Version aus `$ver`, kopiert `neobone.kbd` aus dem Skriptordner nach `C:\kanata\kanata-pre\` und startet Kanata. Bei Versionswechsel `$ver` im Skript anpassen.
-- `run-kanata.ps1` / `.bat`: startet nur Kanata aus `C:\kanata\kanata-pre\`.
-- `install-kanata.ps1` legt zusätzlich `Kanata.lnk` im Startmenü an (GUI-EXE mit Icon, Argument `--cfg`).
-- Doppelklick auf `.ps1` öffnet den Editor, daher die `.bat`-Starter.
-- Config **bei jeder Änderung erneut kopieren** (Repo-Datei ist nur Kopie), also `install-kanata.bat` erneut ausführen.
-- Autostart: `shell:startup` + Verknüpfung auf die GUI-EXE mit `--cfg C:\kanata\kanata-pre\neobone.kbd`. Lokale Kopie nutzen, WSL läuft beim Boot evtl. noch nicht.
 - Kanata läuft nur unter Windows, nicht in WSL.
 
 ## Workflow für Änderungen
 
 1. `neobone.kbd` mit dem edit-Tool ändern.
 2. Mit `--check` validieren (siehe oben).
-3. Nutzer bitten, die Config erneut zu kopieren und Kanata neu zu starten.
+3. Nutzer bitten, Kanata neu zu starten (Config wird direkt aus dem Repo gelesen).
 4. Bei Fehlern: betroffene Ebene, Aktivierungstaste und Zeitpunkt des Hängens erfragen.

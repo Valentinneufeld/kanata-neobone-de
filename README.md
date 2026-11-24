@@ -9,8 +9,8 @@
 | Datei | Zweck |
 |---|---|
 | `neobone.kbd` | Die Kanata-Config |
-| `install-kanata.ps1` / `.bat` | Lädt Kanata, kopiert die Config nach `C:\kanata\kanata-pre\` und startet Kanata |
-| `run-kanata.ps1` / `.bat` | Startet nur Kanata aus `C:\kanata\kanata-pre\` mit der dortigen `neobone.kbd` |
+| `kanata.ps1` | Einziges Skript: `-Action install` (Kanata laden, Startmenü-Eintrag, starten) oder `-Action run` (mit Konsole starten) |
+| `install-kanata.bat` / `run-kanata.bat` | Doppelklick-Starter für `kanata.ps1` |
 | `SKILL.md` | Hinweise und Lernpunkte für das Erweitern der Config (für Menschen und KI-Agenten) |
 
 ## Layout
@@ -49,29 +49,16 @@ Auf Ebene 3 und 4 funktionieren die Mods ebenfalls, z. B. Ö halten + F halten +
 
 ## Installation unter Windows
 
-1. Kanata `v1.13.0-prerelease-1` oder neuer von den [Releases](https://github.com/jtroo/kanata/releases) laden (`windows-binaries-x64.zip`) und entpacken. Die Option `windows-sync-keystates none` gibt es erst ab dieser Version.
-2. Ordner dieses Repos nach Windows holen und `install-kanata.bat` per Doppelklick ausführen. Das Skript lädt Kanata, kopiert die Config und startet Kanata.
-3. Beenden: `Strg` (links) + `Leertaste` + `Esc`, Rechtsklick auf das Tray-Icon → „Exit" oder `Stop-Process -Name 'kanata*' -Force`.
+1. Repo klonen oder als ZIP laden und an einen festen Ort legen (z. B. `C:\Tools\kanata`).
+2. `install-kanata.bat` per Doppelklick ausführen. Das Skript lädt Kanata nach `bin\` (neben dem Skript), legt den Startmenü-Eintrag „Kanata" an und startet Kanata.
+3. Danach: Win-Taste drücken, `Kanata` tippen, Enter. Läuft ohne Konsole mit Tray-Icon.
+4. Beenden: linke `Strg` + `Leertaste` + `Esc`, Rechtsklick auf das Tray-Icon → „Exit" oder `Stop-Process -Name 'kanata*' -Force`.
 
-Von PowerShell aus (Pfad zum Repo anpassen):
-
-```
-powershell -ExecutionPolicy Bypass -File "<Pfad>\install-kanata.ps1"
-```
-
-Bei jeder Änderung an `neobone.kbd` Skript erneut ausführen, damit die Config neu kopiert wird.
-
-### Startmenü
-
-`install-kanata` legt einen Eintrag „Kanata" im Startmenü an (mit Kanata-Icon, ohne Konsolenfenster). Starten: Win-Taste drücken, `Kanata` tippen, Enter. Beenden über das Tray-Icon oder `Strg` + `Leertaste` + `Esc`.
+Alles liegt relativ zum Skript, die Config `neobone.kbd` wird direkt aus dem Repo-Ordner gelesen (kein Kopieren). Nach einer Config-Änderung Kanata neu starten, nach dem Verschieben des Ordners `install-kanata.bat` erneut ausführen, damit der Startmenü-Eintrag neu zeigt. `run-kanata.bat` startet Kanata mit Konsole zum Debuggen. Eine andere Kanata-Version lässt sich im Skript über den Parameter `-Version` setzen.
 
 ### Autostart
 
-`Win+R` → `shell:startup` und dort eine Verknüpfung anlegen auf:
-
-```
-C:\kanata\kanata-pre\kanata_windows_gui_winIOv2_x64.exe --cfg C:\kanata\kanata-pre\neobone.kbd
-```
+`Win+R` → `shell:startup` und dort eine Verknüpfung auf den Startmenü-Eintrag „Kanata" ablegen (aus `shell:programs` kopieren).
 
 ## Validieren (ohne Windows)
 
