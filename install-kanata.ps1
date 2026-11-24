@@ -20,6 +20,18 @@ if (-not (Test-Path $exe) -or -not (Test-Path $marker) -or (Get-Content $marker)
 }
 
 Copy-Item (Join-Path $PSScriptRoot 'neobone.kbd') (Join-Path $dir 'neobone.kbd') -Force
+
+# Startmenü-Eintrag "Kanata" (Win-Taste, "Kanata" tippen). GUI-EXE hat das Kanata-Icon und kein Konsolenfenster.
+$guiExe = Join-Path $dir 'kanata_windows_gui_winIOv2_x64.exe'
+$lnk = Join-Path ([Environment]::GetFolderPath('Programs')) 'Kanata.lnk'
+$sc = (New-Object -ComObject WScript.Shell).CreateShortcut($lnk)
+$sc.TargetPath = $guiExe
+$sc.Arguments = "--cfg `"$(Join-Path $dir 'neobone.kbd')`""
+$sc.WorkingDirectory = $dir
+$sc.IconLocation = "$guiExe,0"
+$sc.Description = 'Kanata Neo-Bone'
+$sc.Save()
+Write-Host "Startmenü-Eintrag angelegt: $lnk"
 Write-Host 'Config kopiert. Starte Kanata (Beenden: Strg+Leertaste+Esc) ...'
 & $exe --cfg (Join-Path $dir 'neobone.kbd')
 Read-Host 'Kanata beendet. Enter zum Schliessen'

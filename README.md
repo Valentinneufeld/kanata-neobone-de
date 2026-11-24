@@ -61,6 +61,10 @@ powershell -ExecutionPolicy Bypass -File "<Pfad>\install-kanata.ps1"
 
 Bei jeder Änderung an `neobone.kbd` Skript erneut ausführen, damit die Config neu kopiert wird.
 
+### Startmenü
+
+`install-kanata` legt einen Eintrag „Kanata" im Startmenü an (mit Kanata-Icon, ohne Konsolenfenster). Starten: Win-Taste drücken, `Kanata` tippen, Enter. Beenden über das Tray-Icon oder `Strg` + `Leertaste` + `Esc`.
+
 ### Autostart
 
 `Win+R` → `shell:startup` und dort eine Verknüpfung anlegen auf:

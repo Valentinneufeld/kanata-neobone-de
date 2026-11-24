@@ -71,6 +71,7 @@ Erwartet: `config file is valid`. `gh release download` geht ohne Login nicht, d
 - Dateien: `kanata_windows_tty_winIOv2_x64.exe` (Konsole), `kanata_windows_gui_winIOv2_x64.exe` (Tray).
 - `install-kanata.ps1` / `.bat`: beendet laufendes Kanata, lädt bei Bedarf die Version aus `$ver`, kopiert `neobone.kbd` aus dem Skriptordner nach `C:\kanata\kanata-pre\` und startet Kanata. Bei Versionswechsel `$ver` im Skript anpassen.
 - `run-kanata.ps1` / `.bat`: startet nur Kanata aus `C:\kanata\kanata-pre\`.
+- `install-kanata.ps1` legt zusätzlich `Kanata.lnk` im Startmenü an (GUI-EXE mit Icon, Argument `--cfg`).
 - Doppelklick auf `.ps1` öffnet den Editor, daher die `.bat`-Starter.
 - Config **bei jeder Änderung erneut kopieren** (Repo-Datei ist nur Kopie), also `install-kanata.bat` erneut ausführen.
 - Autostart: `shell:startup` + Verknüpfung auf die GUI-EXE mit `--cfg C:\kanata\kanata-pre\neobone.kbd`. Lokale Kopie nutzen, WSL läuft beim Boot evtl. noch nicht.
