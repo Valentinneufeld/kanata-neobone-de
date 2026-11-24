@@ -19,21 +19,21 @@
 
 (deflayer bone
   j d u a x   p h l m w -
-  @a  t @d @f o   b @j @k s @oe @ae
+  @a  @s @d @f o   b @j @k @l @oe @ae
   v [ ' ; @l4   z y , . k
   @l3 @l3 f @l4 spc @l4
 )
 
 (deflayer sym
   (unicode …) (unicode _) (unicode "[") (unicode "]") (unicode ^)   (unicode !) (unicode <) (unicode >) (unicode =) (unicode &) (unicode ſ)
-  @s-a (unicode /) @s-d @s-f (unicode *)   (unicode ?) @s-j @s-k (unicode -) (unicode :) (unicode @)
+  @s-a @s-s @s-d @s-f (unicode *)   (unicode ?) @s-j @s-k @s-l (unicode :) (unicode @)
   (unicode $) (unicode |) (unicode ~) (unicode `) @l4   (unicode +) (unicode %) S-2 S-\ (unicode ;)
   @l3 @l3 (unicode #) @l4 spc @l4
 )
 
 (deflayer nav
   pgup bspc up   del  pgdn    (unicode ¡) (unicode 7) (unicode 8) (unicode 9) (unicode +) (unicode -)
-  @n-a left @n-d @n-f end     (unicode ¿) @n-j @n-k (unicode 6) (unicode ",") (unicode .)
+  @n-a @n-s @n-d @n-f end     (unicode ¿) @n-j @n-k @n-l (unicode ",") (unicode .)
   tab  ins  ret  C-z @l4     (unicode :) (unicode 1) (unicode 2) (unicode 3) (unicode ;)
   @l3 @l3 esc @l4 0 @l4
 )
@@ -43,6 +43,8 @@
   l4 (layer-while-held nav)
   ;; Home Row Mods (physische Position a d f j k ö ä, Ausgabe = Bone-Buchstabe)
   a  (tap-hold-release 200 200 c lalt)
+  s  (tap-hold-release 200 200 t lmet)
+  l  (tap-hold-release 200 200 s rmet)
   d  (tap-hold-release 200 200 i lsft)
   f  (tap-hold-release 200 200 e lctl)
   j  (tap-hold-release 200 200 n rctl)
@@ -50,11 +52,15 @@
   oe (tap-hold-release 200 200 g @l4)
   ae (tap-hold-release 200 200 q @l3)
   ;; Home Row Mods auch auf Ebene 3 (s-) und 4 (n-): Tap = Zeichen der Ebene
+  s-s (tap-hold-release 200 200 (unicode /) lmet)
+  s-l (tap-hold-release 200 200 (unicode -) rmet)
   s-a (tap-hold-release 200 200 (unicode "\") lalt)
   s-d (tap-hold-release 200 200 (unicode "{") lsft)
   s-f (tap-hold-release 200 200 (unicode "}") lctl)
   s-j (tap-hold-release 200 200 (unicode "(") rctl)
   s-k (tap-hold-release 200 200 (unicode ")") rsft)
+  n-s (tap-hold-release 200 200 left lmet)
+  n-l (tap-hold-release 200 200 (unicode 6) rmet)
   n-a (tap-hold-release 200 200 home lalt)
   n-d (tap-hold-release 200 200 down lsft)
   n-f (tap-hold-release 200 200 rght lctl)

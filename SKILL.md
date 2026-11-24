@@ -40,10 +40,10 @@ Physisch ist die untere Reihe eine Taste nach links verschoben: `f` auf `<` (102
 ## Home Row Mods
 
 - Physische Position (QWERTZ-Beschriftung), Tap = Bone-Buchstabe:
-  A = Alt, D/K = Shift, F/J = Strg, Ö = Layer nav, Ä = Layer sym.
+  A = Alt, S/L = Win, D/K = Shift, F/J = Strg, Ö = Layer nav, Ä = Layer sym.
 - Alias-Typ: `tap-hold-release 200 200 <tap> <hold>`.
 - **Mods müssen auch auf sym/nav funktionieren**, damit z.B. Ö halten + F halten + Pfeil Strg+Pfeil ergibt.
-  Dafür haben die Positionen A/D/F/J/K in `sym` (Aliase `s-*`) und `nav` (Aliase `n-*`) eigene Hold-Taps mit dem Tap-Zeichen der jeweiligen Ebene.
+  Dafür haben die Positionen A/S/D/F/J/K/L in `sym` (Aliase `s-*`) und `nav` (Aliase `n-*`) eigene Hold-Taps mit dem Tap-Zeichen der jeweiligen Ebene.
 - Neue Mod-Taste hinzufügen: Alias in allen drei Layern setzen (bone, sym, nav).
 
 ## Bekannte Probleme

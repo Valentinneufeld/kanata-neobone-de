@@ -38,6 +38,8 @@ Antippen gibt den Buchstaben, Halten den Modifier (Haltezeit 200 ms):
 | Taste | Halten |
 |---|---|
 | A | Alt |
+| S | Win (links) |
+| L | Win (rechts) |
 | D, K | Shift |
 | F, J | Strg |
 | Ö | Ebene 4 |
